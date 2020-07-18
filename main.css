@@ -1,0 +1,19 @@
+p {
+    color: #FFFFFF;
+    font-family: arial;
+}
+
+img {
+    width: 100%;
+}
+
+.container {
+    z-index: 2;
+    position: sticky;
+}
+
+body {
+    background-image: url("img/backgroundfuego.jpg");
+    background-color: #000000;
+    background-size: 100%;
+}
