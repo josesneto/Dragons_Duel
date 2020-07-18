@@ -1,0 +1,70 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<meta charset='utf-8'>
+		<title>
+			DUELO DOS DRAGÕES
+		</title>
+		<style>
+			p {
+				color: #FFFFFF;
+				font-family: arial;
+			}
+			body {
+				background-image: url("img/backgroundfuego.jpg");
+				background-color: #000000;
+			}
+		</style>
+		<script src='cod.js'></script>
+	</head>
+	
+	<body bgcolor='a50000'>
+		<table border='0' width='100%'>
+			<tr>
+				<td width='40%' colspan=2>
+					<img align='left' id='d1' src='img/d1n0.svg' width='100%' height='45%'>
+				</td>
+				<td>
+					<div id='mensagem'></div>
+				</td>
+				<td width='40%' colspan=2>
+					<img align='right' id='d2' src='img/d2n0.svg' width='100%' height='45%'>
+				</td>
+			</tr>
+			<tr>
+				<td width='20%'>
+					<p align='right'><b>
+						FOLEGO :<br/>
+						ENERGIA :<br/>
+						VIDA :
+					</b></p>
+				</td>
+				<td align='left' width='20%'>
+							<progress id='folego1' min=0 max=100 value=0></progress><br/>
+							<progress id='energia1' min=0 max=100 value=0></progress><br/>
+							<progress id='forca1' min=0 max=100 value=100></progress>
+				</td>
+				<td width='20%'>
+					<p align='center' id='controle'><img src='img/bf0.svg' id='botao' onclick='atacar()' width='100%'/></p>
+				</td>
+				<td width='20%'>
+					<p align='right'><b>
+						ENERGIA :<br/>
+						VIDA :
+					</b></p>
+				</td>
+				<td width='20%'>
+					<progress id='energia2' min=0 max=100 value=0></progress><br/>
+					<progress id='forca2' min=0 max=100 value=100></progress>
+				</td>
+			</tr>
+			<tr>
+				<td colspan=5><div align='center'><audio id='musica' src="alok-fuego.mp3" type="audio/mpeg" controls loop></div></audio>
+		</td>
+			</tr>
+		</div>
+		<div id='sd1'></div>
+		<div id='sd2'></div>
+		</div>
+	</body>
+</html>
