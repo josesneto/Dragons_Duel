@@ -16,7 +16,7 @@
 				if (energia1.value == 100) {
 					estado1 = 'f';
 					mudaBotao("fogo",0);
-					som.innerHTML = '<audio src="fogo.mp3" type="audio/mpeg" autoplay></audio>';		
+					som.innerHTML = '<audio src="fire-sound.mp3" type="audio/mpeg" autoplay></audio>';		
 					if (folego.value < 33) {
 						var nivel = 1;
 					}
@@ -52,7 +52,7 @@
 					forca1.value -= 3*nivel;
 					energia2.value -= 30*nivel;
 					estado2 = 'f';
-					som.innerHTML = '<audio src="fogo.mp3" type="audio/mpeg" autoplay></audio>';
+					som.innerHTML = '<audio src="fire-sound.mp3" type="audio/mpeg" autoplay></audio>';
 				}
 				if (forca1.value == 0) {
 					var campo = document.getElementById('mensagem');
