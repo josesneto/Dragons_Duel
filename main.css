@@ -13,7 +13,32 @@ img {
 }
 
 body {
-    background-image: url("img/backgroundfuego.jpg");
+    background-image: url("img/background.jpg");
     background-color: #000000;
     background-size: 100%;
+    color: white;
+}
+
+.fa {
+    transition: 0.5s;
+}
+
+.fa-fire {
+    color: orange;
+}
+
+.fa-fire:hover {
+    color: red;
+}
+
+.fa-spinner {
+    color: orange;
+}
+
+.fa-repeat {
+    color: orange;
+}
+
+.fa-repeat:hover {
+    color: red;
 }

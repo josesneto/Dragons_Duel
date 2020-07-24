@@ -1,101 +1,106 @@
 var x = 0;
 var r = false;
-var estado1 = 'n';
-var estado2 = 'n';
+var state1 = 'n';
+var state2 = 'n';
 var rf = false;
+var mainButtonState = "none";
 
-defineIntervalos();
-/*-------------------- DEFINE INTERVALOS ---------------------*/
-function defineIntervalos() {
-	i =	setInterval(ataqueInimigo, 500);
-	j = setInterval(carregaEnergia, 30);
-	k = setInterval(animar, 90);
-	l = setInterval(folegoJogador, 30);
+
+/*----------------------------- INTERVALS DEFINITION --------------------------------*/
+
+function defineIntervals() {
+	i =	setInterval(invokeEnemyAttack, 500);
+	j = setInterval(chargeEnergyBars, 30);
+	k = setInterval(updateAnimationFrames, 90);
+	l = setInterval(updatePlayerDragonBreath, 30);
 }
 
-/*-------------------- ATAQUE AO INIMIGO E CONSEQUENCIAS ---------------------*/
-function atacar() {
-	var som = document.getElementById('sd1');
-	var energia1 = document.getElementById('energia1');
-	var forca2 = document.getElementById('forca2');
-	var folego = document.getElementById('folego1');
-	if (energia1.value == 100) {
-		estado1 = 'f';
-		mudaBotao("fogo",0);
-		som.innerHTML = '<audio src="fire-sound.mp3" type="audio/mpeg" autoplay></audio>';		
-		if (folego.value < 33) {
-			var nivel = 1;
+/*-------------------- ATTACK MADE BY THE PLAYER AND CONSEQUENCES ---------------------*/
+
+function performAttack() {
+	console.log('done');
+	var soundSource = document.getElementById('sound-source1');
+	var energy1 = document.getElementById('energy1');
+	var force2 = document.getElementById('force2');
+	var breath = document.getElementById('breath1');
+	if (energy1.value == 100) {
+		state1 = 'f';
+		changeMainButton("charging");
+		soundSource.innerHTML = '<audio src="fire-sound.mp3" type="audio/mpeg" autoplay></audio>';		
+		if (breath.value < 33) {
+			var level = 1;
 		}
-		if (folego.value >= 33 && folego.value < 66) {
-			var nivel = 2;
+		if (breath.value >= 33 && breath.value < 66) {
+			var level = 2;
 		}
-		if (folego.value >= 66 && folego.value < 99) {
-			var nivel = 3;
+		if (breath.value >= 66 && breath.value < 99) {
+			var level = 3;
 		}
-		if (folego.value >= 99) {
-			var nivel = 4;
+		if (breath.value >= 99) {
+			var level = 4;
 		}
-		forca2.value -= 3*nivel;
-		energia1.value -= 30*nivel;
-		folego.value = 0;
+		force2.value -= 3 * level;
+		energy1.value -= 30 * level;
+		breath.value = 0;
 	}
-	if (forca2.value == 0) {
-		var campo = document.getElementById('mensagem');
-		var controle = document.getElementById('controle');
-		campo.innerHTML = '<p align="center"><font size="7"><b>VOCÊ VENCEU!!!<br/>QUER JOGAR NOVAMENTE?</b><br/><img id="denovo" width="70%" src="img/recomecar.svg" onclick="reiniciarJogo();"/></font></p>';
-		controle.innerHTML = '';
-		clearInterval(i);
+	if (force2.value == 0) {
+		var messageBox = document.getElementById('message-box');
+		messageBox.innerHTML = '<p><b>YOU WON!<br/>DO YOU WANT TO PLAY AGAIN?</b></p>';
+		clearIntervals();
+		changeMainButton('restart');
 	}
 }
 
-/*-----------------ATAQUE EFETUADO PELO INIMIGO E CONSEQUENCIAS-------------------------*/
-function ataqueInimigo() {
-	var nivel = Math.floor((Math.random() * 6));
-	var som = document.getElementById('sd2');
-	var energia2 = document.getElementById('energia2');
-	var forca1 = document.getElementById('forca1');
-	if (energia2.value == 100 && nivel < 5) {
-		forca1.value -= 3*nivel;
-		energia2.value -= 30*nivel;
-		estado2 = 'f';
-		som.innerHTML = '<audio src="fire-sound.mp3" type="audio/mpeg" autoplay></audio>';
-	}
-	if (forca1.value == 0) {
-		var campo = document.getElementById('mensagem');
-		var controle = document.getElementById('controle');
-		campo.innerHTML = '<p align="center"><font size="7"><b>VOCÊ PERDEU...<br/>QUER TENTAR MAIS UMA VEZ?</b><br/><img id="denovo" width="70%" src="img/recomecar.svg" onclick="reiniciarJogo();"/></font></p>';
-		controle.innerHTML = '';
-		som.innerHTML = '';
-		estado2 = 'n';
-		clearInterval(i);
-		clearInterval(l);
-	}
-}
-/*-------------------------RECARGA CONSTANTE DAS BARRAS DE ENERGIA----------------------- */
-function carregaEnergia() {
-	var som1 = document.getElementById('sd1');
-	var som2 = document.getElementById('sd2');
-	var energia1 = document.getElementById('energia1');
-	var energia2 = document.getElementById('energia2');
-	energia1.value++;
-	energia2.value++;
-	if (energia1.value == 100) {
-		estado1 = 'n';
-		som1.innerHTML = '';
-		mudaBotao("fogo",1);
-	}
-	if (energia2.value == 100) {
-		estado2 = 'n';
-		som2.innerHTML = '';
-	}
-}
-/*-------------------------------ANIMACOES PERFIL---------------------------------------*/
+/*----------------- ATTACK MADE BY THE ENEMY AND CONSEQUENCES -------------------------*/
 
-function animar() {
-	dragao1 = document.getElementById('d1');
-	dragao2 = document.getElementById('d2');
-	dragao1.innerHTML = "<img src='img/d1" + estado1 + x + ".svg'/>";
-	dragao2.innerHTML = "<img src='img/d2" + estado2 + x + ".svg'/>";
+function invokeEnemyAttack() {
+	var level = Math.floor((Math.random() * 6));
+	var soundSource = document.getElementById('sound-source2');
+	var energy2 = document.getElementById('energy2');
+	var force1 = document.getElementById('force1');
+	if (energy2.value == 100 && level < 5) {
+		force1.value -= 3*level;
+		energy2.value -= 30*level;
+		state2 = 'f';
+		soundSource.innerHTML = '<audio src="fire-sound.mp3" type="audio/mpeg" autoplay></audio>';
+	}
+	if (force1.value == 0) {
+		var messageBox = document.getElementById('message-box');
+		messageBox.innerHTML = '<p><b>YOU LOSE...<br/>DO YOU WANT TO RETRY?</b></p>';
+		soundSource.innerHTML = '';
+		state2 = 'n';
+		clearIntervals();
+		changeMainButton('restart');
+	}
+}
+
+/*------------------------- RECHARGES ENERGY BARS ----------------------- */
+
+function chargeEnergyBars() {
+	var soundSource1 = document.getElementById('sound-source1');
+	var soundSource2 = document.getElementById('sound-source2');
+	var energy1 = document.getElementById('energy1');
+	var energy2 = document.getElementById('energy2');
+	energy1.value++;
+	energy2.value++;
+	if (energy1.value == 100) {
+		state1 = 'n';
+		soundSource1.innerHTML = '';
+		changeMainButton("fire");
+	}
+	if (energy2.value == 100) {
+		state2 = 'n';
+		soundSource2.innerHTML = '';
+	}
+}
+
+/*------------------------------- ANIMATES THE DRAGONS FRAMES ---------------------------------------*/
+
+function updateAnimationFrames() {
+	dragon1 = document.getElementById('dragon1');
+	dragon2 = document.getElementById('dragon2');
+	dragon1.innerHTML = "<img src='img/d1" + state1 + x + ".svg'/>";
+	dragon2.innerHTML = "<img src='img/d2" + state2 + x + ".svg'/>";
 	if (r == false && x < 9) {
 		x++;
 	}
@@ -109,47 +114,67 @@ function animar() {
 		r = false;
 	}
 }
-/*-----------------------------FOLEGO DO DRAGAO JOGADOR--------------------------------*/
 
-function folegoJogador() {
-	var folego = document.getElementById('folego1');
-	if (rf == false && folego.value < 100) {
-			folego.value += 5;
+/*----------------------------- UPDATES THE BREATH OF THE PLAYER'S DRAGON --------------------------------*/
+
+function updatePlayerDragonBreath() {
+	var breath = document.getElementById('breath1');
+	if (rf == false && breath.value < 100) {
+			breath.value += 5;
 		}
-		if (rf == true && folego.value > 0) {
-			folego.value -= 5;
+		if (rf == true && breath.value > 0) {
+			breath.value -= 5;
 		}
-		if (folego.value == 100 ) {
+		if (breath.value == 100 ) {
 			rf = true;
 		}
-		if (folego.value == 0) {
+		if (breath.value == 0) {
 			rf = false;
 		}
 	}
-/*-----------------------------APARÊNCIA DO BOTÂO DE ATAQUE--------------------------------*/
-function mudaBotao(b, num) {
-	if (b == 'fogo') {
-		botao = document.getElementById('botao');
-		botao.src = ('img/bf'+num+'.svg');
+
+/*----------------------------- MAIN BUTTON APPEARANCE--------------------------------*/
+
+function changeMainButton(option) {
+	mainButton = document.getElementById('main-button');
+	if (option == 'fire' && mainButtonState != 'fire') {
+		mainButton.innerHTML = "<i class='fa fa-fire fa-5x' onclick='performAttack()'></i><br/>FIRE!";
 	}
-	if (b == 'denovo') {
-		botao = document.getElementById('denovo');
-		botao.src = ('img/recomecar'+num+'.svg');
+	if (option == 'charging' && mainButtonState != 'charging') {
+		mainButton.innerHTML = "<i class='fa fa-spinner fa-pulse fa-5x fa-fw'></i><br/>CHARGING...";
 	}
+	if (option == 'restart' && mainButtonState != 'restart') {
+		mainButton.innerHTML = "<i class='fa fa-repeat fa-5x' onclick='restartGame()'></i><br/>RESTART";
+	}
+	mainButtonState = option;
+	console.log('button updated');
 }
-/*----------------------------- REINICIA O JOGO --------------------------------*/
-function reiniciarJogo() {
+
+/*----------------------------- RESTARTS THE GAME --------------------------------*/
+
+function restartGame() {
+	var messageBox = document.getElementById('message-box');
+	messageBox.innerHTML = '';
+	changeMainButton('charging');
+	var force1 = document.getElementById('force1');
+	var force2 = document.getElementById('force2');
+	force1.value = 100;
+	force2.value = 100;
+	defineIntervals();
+}
+
+
+/*----------------------------- TURN OFF INTERVALS --------------------------------*/
+
+function clearIntervals() {
 	clearInterval(i);
 	clearInterval(j);
 	clearInterval(k);
 	clearInterval(l);
-	var campo = document.getElementById('mensagem');
-	var controle = document.getElementById('controle');
-	campo.innerHTML = '';
-	controle.innerHTML = '<img src="img/bf0.svg" id="botao" onclick="atacar()" width="100%"/>';
-	var forca1 = document.getElementById('forca1');
-	var forca2 = document.getElementById('forca2');
-	forca1.value = 100;
-	forca2.value = 100;
-	defineIntervalos();
 }
+
+
+/*----------------------------- MAIN EXECUTION --------------------------------*/
+
+defineIntervals();
+changeMainButton('charging');

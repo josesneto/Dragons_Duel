@@ -12,33 +12,47 @@
 	<body>
 		<div class="container">
 			<div class="row">
-				<div class="col-4" id="d1"></div>
-				<div class="col-4" id="mensagem"></div>
-				<div class="col-4" id="d2"></div>
+				<div class="col-1"></div>
+				<div class="col-4" id="dragon1"></div>
+				<div class="col-2" id="message-box"></div>
+				<div class="col-4" id="dragon2"></div>
+				<div class="col-1"></div>
 			</div>
 			<div class="row">
 				<div class="col-1"></div>
-				<div class="col-1"><p align='right'><b>
-					FOLEGO:<br/>
-					ENERGIA:<br/>
-					VIDA:
-				</b></p></div>
-				<div class="col-2">
-					<progress id='folego1' min=0 max=100 value=0></progress><br/>
-					<progress id='energia1' min=0 max=100 value=0></progress><br/>
-					<progress id='forca1' min=0 max=100 value=100></progress></div>
-				<div class="col-4"><p align='center' id='controle'><img src='img/bf0.svg' id='botao' onclick='atacar()' width='100%'/></p></div>
-				<div class="col-1"><p align='right'><b>
-					ENERGIA:<br/>
-					VIDA:
-				</b></p></div>
-				<div class="col-2"><progress id='energia2' min=0 max=100 value=0></progress><br/>
-					<progress id='forca2' min=0 max=100 value=100></progress></div>
+				<div class="col-1 text-left">
+					<p>
+						<b>
+							ENERGY:
+							<br/>
+							LIFE:
+							<br/>
+							BREATH:
+						</b>
+					</p>
+				</div>
+				<div class="col-3">
+					<progress id='energy1' min=0 max=100 value=0></progress>
+					<br/>
+					<progress id='force1' min=0 max=100 value=100></progress>
+					<br/>
+					<progress id='breath1' min=0 max=100 value=0></progress>
+				</div>
+				<div class="col-2 text-center" id="main-button">
+				</div>
+				<div class="col-1 text-left">
+					<p><b>ENERGY:<br/>LIFE:</b></p>
+				</div>
+				<div class="col-3">
+					<progress id='energy2' min=0 max=100 value=0></progress>
+					<br/>
+					<progress id='force2' min=0 max=100 value=100></progress>
+				</div>
 				<div class="col-1"></div>
 			</div>
 		</div>
-		<div id='sd1'></div>
-		<div id='sd2'></div>
+		<div id='sound-source1'></div>
+		<div id='sound-source2'></div>
 		<script type="text/javascript" src="bootstrap-4.5.0\js\bootstrap.min.js"></script>
 		<script src='main.js'></script>
 	</body>
