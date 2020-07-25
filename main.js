@@ -146,6 +146,7 @@ function changeMainButton(option) {
 	mainButton = document.getElementById('main-button');
 	if (option == 'fire' && mainButtonState != 'fire') {
 		mainButton.innerHTML = "<i class='fa fa-fire fa-5x' onclick='performAttack()'></i><br/><br/><p><b>FIRE!</b></p>";
+		document.body.focus();
 	}
 	if (option == 'charging' && mainButtonState != 'charging') {
 		mainButton.innerHTML = "<i class='fa fa-spinner fa-pulse fa-5x fa-fw'></i><br/><br/><p><b>CHARGING...</b></p>";
@@ -188,6 +189,13 @@ function updateScore() {
 }
 
 /*----------------------------- MAIN EXECUTION --------------------------------*/
+
+document.body.focus();
+document.body.onkeyup = function(e) {
+    if (e.keyCode == 32) {
+        performAttack();
+    }
+}
 
 k = setInterval(updateAnimationFrames, 90);
 updateScore();
