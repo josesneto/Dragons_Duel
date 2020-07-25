@@ -10,14 +10,16 @@
 		<link rel='stylesheet' type='text/css' media='screen' href='main.css'>
 	</head>
 	<body>
+		<div id="bg-filter"></div>
 		<div class="container">
 			<div class="row">
 				<div class="col-1"></div>
 				<div class="col-4" id="dragon1"></div>
-				<div class="col-2" id="message-box"></div>
+				<div class="col-2 text-center" id="message-box"></div>
 				<div class="col-4" id="dragon2"></div>
 				<div class="col-1"></div>
 			</div>
+			<div class="row"><div class="col-12"><br/><br/><br/><br/></div></div>
 			<div class="row">
 				<div class="col-1"></div>
 				<div class="col-1 text-left">
@@ -28,25 +30,37 @@
 							LIFE:
 							<br/>
 							BREATH:
+							<br/>
+							WINS:
 						</b>
 					</p>
 				</div>
-				<div class="col-3">
+				<div class="col-2">
 					<progress id='energy1' min=0 max=100 value=0></progress>
 					<br/>
 					<progress id='force1' min=0 max=100 value=100></progress>
 					<br/>
 					<progress id='breath1' min=0 max=100 value=0></progress>
+					<div id="victories" class="text-center"></div>
 				</div>
-				<div class="col-2 text-center" id="main-button">
+				<div class="col-4 text-center" id="main-button">
 				</div>
 				<div class="col-1 text-left">
-					<p><b>ENERGY:<br/>LIFE:</b></p>
+					<p>
+						<b>
+							ENERGY:
+							<br/>
+							LIFE:
+							<br/>
+							DEFEATS:
+						</b>
+					</p>
 				</div>
-				<div class="col-3">
+				<div class="col-2">
 					<progress id='energy2' min=0 max=100 value=0></progress>
 					<br/>
 					<progress id='force2' min=0 max=100 value=100></progress>
+					<div id="defeats" class="text-center"></div>
 				</div>
 				<div class="col-1"></div>
 			</div>

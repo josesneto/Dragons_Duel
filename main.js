@@ -1,17 +1,20 @@
+
+/*----------------------------- GLOBAL VARIABLES --------------------------------*/
+
 var x = 0;
 var r = false;
 var state1 = 'n';
 var state2 = 'n';
 var rf = false;
 var mainButtonState = "none";
-
+var victories = 0;
+var defeats = 0;
 
 /*----------------------------- INTERVALS DEFINITION --------------------------------*/
 
 function defineIntervals() {
 	i =	setInterval(invokeEnemyAttack, 500);
 	j = setInterval(chargeEnergyBars, 30);
-	k = setInterval(updateAnimationFrames, 90);
 	l = setInterval(updatePlayerDragonBreath, 30);
 }
 
@@ -46,6 +49,8 @@ function performAttack() {
 	if (force2.value == 0) {
 		var messageBox = document.getElementById('message-box');
 		messageBox.innerHTML = '<p><b>YOU WON!<br/>DO YOU WANT TO PLAY AGAIN?</b></p>';
+		victories++;
+		updateScore();
 		clearIntervals();
 		changeMainButton('restart');
 	}
@@ -69,6 +74,8 @@ function invokeEnemyAttack() {
 		messageBox.innerHTML = '<p><b>YOU LOSE...<br/>DO YOU WANT TO RETRY?</b></p>';
 		soundSource.innerHTML = '';
 		state2 = 'n';
+		defeats++;
+		updateScore();
 		clearIntervals();
 		changeMainButton('restart');
 	}
@@ -94,7 +101,7 @@ function chargeEnergyBars() {
 	}
 }
 
-/*------------------------------- ANIMATES THE DRAGONS FRAMES ---------------------------------------*/
+/*------------------------------- ANIMATES THE DRAGONS FRAMES --------------------------------*/
 
 function updateAnimationFrames() {
 	dragon1 = document.getElementById('dragon1');
@@ -115,7 +122,7 @@ function updateAnimationFrames() {
 	}
 }
 
-/*----------------------------- UPDATES THE BREATH OF THE PLAYER'S DRAGON --------------------------------*/
+/*----------------------------- UPDATES THE BREATH OF THE PLAYER'S DRAGON --------------------------*/
 
 function updatePlayerDragonBreath() {
 	var breath = document.getElementById('breath1');
@@ -138,13 +145,13 @@ function updatePlayerDragonBreath() {
 function changeMainButton(option) {
 	mainButton = document.getElementById('main-button');
 	if (option == 'fire' && mainButtonState != 'fire') {
-		mainButton.innerHTML = "<i class='fa fa-fire fa-5x' onclick='performAttack()'></i><br/>FIRE!";
+		mainButton.innerHTML = "<i class='fa fa-fire fa-5x' onclick='performAttack()'></i><br/><br/><p><b>FIRE!</b></p>";
 	}
 	if (option == 'charging' && mainButtonState != 'charging') {
-		mainButton.innerHTML = "<i class='fa fa-spinner fa-pulse fa-5x fa-fw'></i><br/>CHARGING...";
+		mainButton.innerHTML = "<i class='fa fa-spinner fa-pulse fa-5x fa-fw'></i><br/><br/><p><b>CHARGING...</b></p>";
 	}
 	if (option == 'restart' && mainButtonState != 'restart') {
-		mainButton.innerHTML = "<i class='fa fa-repeat fa-5x' onclick='restartGame()'></i><br/>RESTART";
+		mainButton.innerHTML = "<i class='fa fa-repeat fa-5x' onclick='restartGame()'></i><br/><br/><p><b>RESTART</b></p>";
 	}
 	mainButtonState = option;
 	console.log('button updated');
@@ -163,18 +170,26 @@ function restartGame() {
 	defineIntervals();
 }
 
-
 /*----------------------------- TURN OFF INTERVALS --------------------------------*/
 
 function clearIntervals() {
 	clearInterval(i);
 	clearInterval(j);
-	clearInterval(k);
 	clearInterval(l);
 }
 
+/*----------------------------- UPDATES THE SCOREBOARDS ------------------------*/
+
+function updateScore() {
+	victoriesElement = document.getElementById("victories");
+	defeatsElement = document.getElementById("defeats");
+	victoriesElement.innerHTML = '<p><b>' + victories + '</b></p>';
+	defeatsElement.innerHTML = '<p><b>' + defeats + '</b></p>';
+}
 
 /*----------------------------- MAIN EXECUTION --------------------------------*/
 
+k = setInterval(updateAnimationFrames, 90);
+updateScore();
 defineIntervals();
 changeMainButton('charging');
