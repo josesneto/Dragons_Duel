@@ -50,6 +50,8 @@ function performAttack() {
 		var messageBox = document.getElementById('message-box');
 		messageBox.innerHTML = '<p><b>YOU WON!<br/>DO YOU WANT TO PLAY AGAIN?</b></p>';
 		victories++;
+		state1 = 'n';
+		state2 = 'n';
 		updateScore();
 		clearIntervals();
 		changeMainButton('restart');
@@ -73,8 +75,9 @@ function invokeEnemyAttack() {
 		var messageBox = document.getElementById('message-box');
 		messageBox.innerHTML = '<p><b>YOU LOSE...<br/>DO YOU WANT TO RETRY?</b></p>';
 		soundSource.innerHTML = '';
-		state2 = 'n';
 		defeats++;
+		state1 = 'n';
+		state2 = 'n';
 		updateScore();
 		clearIntervals();
 		changeMainButton('restart');
@@ -192,8 +195,12 @@ function updateScore() {
 
 document.body.focus();
 document.body.onkeyup = function(e) {
-    if (e.keyCode == 32) {
-        performAttack();
+    if (e.keyCode == 32) {		
+		enemyLife = document.getElementById('force2').value;
+		playerLife = document.getElementById('force1').value;
+		if (enemyLife > 0 && playerLife > 0) {
+			performAttack();
+		}
     }
 }
 
