@@ -198,12 +198,10 @@ function logWindowDimensions() {
 	var height = window.outerHeight;
 	var flipMsg = document.getElementById('flip-scr-warning');
 	if (width < height) {
-		console.log("Flip the screen!");
 		document.body.classList.add('blurred');
 		alert("Please ROTATE THE SCREEN! The enemy dragon won't wait you to get ready to battle!");
 	}
 	else {
-		console.log(width, height);
 		document.body.classList.remove('blurred');
 	}
 }
