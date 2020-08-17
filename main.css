@@ -9,12 +9,13 @@ img {
 }
 
 progress {
-    height: 15px;
+    height: 7px;
   }
 
 body {
     background-color: #000000;
     color: white;
+    font-size: 10px;
 }
 .container {
     z-index: 2;
@@ -58,7 +59,7 @@ body {
 
 #message-box {
     padding-top: 10%;
-    font-size: 25px;
+    font-size: 10px;
 }
 
 #dragon1 {
@@ -81,6 +82,10 @@ body {
     filter: blur(5px) hue-rotate(20deg) grayscale(0.3);
     width: 100%;
     height: 100%;
+}
+
+.blurred {
+    filter: blur(20px) grayscale(0.7);
 }
 
 @keyframes blink-color1 {

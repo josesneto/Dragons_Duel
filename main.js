@@ -148,14 +148,14 @@ function updatePlayerDragonBreath() {
 function changeMainButton(option) {
 	mainButton = document.getElementById('main-button');
 	if (option == 'fire' && mainButtonState != 'fire') {
-		mainButton.innerHTML = "<i class='fa fa-fire fa-5x' onclick='performAttack()'></i><br/><br/><p><b>FIRE!</b></p>";
+		mainButton.innerHTML = "<i class='fa fa-fire fa-5x' onclick='performAttack()'></i> <p><b>FIRE!</b></p>";
 		document.body.focus();
 	}
 	if (option == 'charging' && mainButtonState != 'charging') {
-		mainButton.innerHTML = "<i class='fa fa-spinner fa-pulse fa-5x fa-fw'></i><br/><br/><p><b>CHARGING...</b></p>";
+		mainButton.innerHTML = "<i class='fa fa-spinner fa-pulse fa-5x fa-fw'></i> <p><b>CHARGING...</b></p>";
 	}
 	if (option == 'restart' && mainButtonState != 'restart') {
-		mainButton.innerHTML = "<i class='fa fa-repeat fa-5x' onclick='restartGame()'></i><br/><br/><p><b>RESTART</b></p>";
+		mainButton.innerHTML = "<i class='fa fa-repeat fa-5x' onclick='restartGame()'></i> <p><b>RESTART</b></p>";
 	}
 	mainButtonState = option;
 	console.log('button updated');
@@ -191,6 +191,23 @@ function updateScore() {
 	defeatsElement.innerHTML = '<p><b>' + defeats + '</b></p>';
 }
 
+/*----------------------------- LOG DIMENSIONS --------------------------------*/
+
+function logWindowDimensions() {
+	var width = window.outerWidth;
+	var height = window.outerHeight;
+	var flipMsg = document.getElementById('flip-scr-warning');
+	if (width < height) {
+		console.log("Flip the screen!");
+		document.body.classList.add('blurred');
+		alert("Please ROTATE THE SCREEN! The enemy dragon won't wait you to get ready to battle!");
+	}
+	else {
+		console.log(width, height);
+		document.body.classList.remove('blurred');
+	}
+}
+
 /*----------------------------- MAIN EXECUTION --------------------------------*/
 
 document.body.focus();
@@ -205,6 +222,7 @@ document.body.onkeyup = function(e) {
 }
 
 k = setInterval(updateAnimationFrames, 90);
+z = setInterval(logWindowDimensions, 100);
 updateScore();
 defineIntervals();
 changeMainButton('charging');
